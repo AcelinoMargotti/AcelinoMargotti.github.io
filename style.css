@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
 
 :root {
-    --primary-color: #ff6700; /* Laranja continua como cor de destaque */
-    --background-color: #f4f4f4; /* Fundo principal um cinza bem claro */
-    --text-color: #333; /* Cor principal do texto */
-    --card-background: #ffffff; /* Fundo dos cards (branco) */
+    --primary-color: #ff6700;
+    --background-color: #f4f4f4;
+    --text-color: #333;
+    --card-background: #ffffff;
     --footer-background: #333;
 }
 
@@ -35,7 +35,7 @@ body {
     top: 0;
     width: 100%;
     z-index: 10;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra suave na barra de navegação */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .navbar .container {
@@ -128,7 +128,7 @@ body {
     gap: 2rem;
 }
 
-.skill-card, .project-card {
+.skill-card {
     background: var(--card-background);
     padding: 2rem;
     text-align: center;
@@ -137,7 +137,7 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.skill-card:hover, .project-card:hover {
+.skill-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 10px 20px rgba(0,0,0,0.12);
 }
@@ -148,9 +148,41 @@ body {
     margin-bottom: 1rem;
 }
 
+/* Estilos do Card de Projeto Atualizados */
 .project-card {
+    background: var(--card-background);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     margin-bottom: 2rem;
-    text-align: left; /* Alinhamento do texto do projeto */
+    overflow: hidden; /* Garante que a imagem não saia do card arredondado */
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+}
+
+/* Novos estilos para a imagem do projeto */
+.project-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.project-content {
+    padding: 2rem;
+    text-align: left;
+}
+
+.project-content h3 {
+    margin-bottom: 0.5rem;
+}
+
+.project-content p {
+    margin-bottom: 1rem;
 }
 
 .btn-secondary {
@@ -174,4 +206,23 @@ body {
     padding: 2rem;
     background: var(--footer-background);
     color: #f4f4f4;
+}
+
+/* Media Query para telas maiores */
+@media (min-width: 768px) {
+    .project-card {
+        flex-direction: row; /* Coloca a imagem e o texto lado a lado */
+    }
+
+    .project-image {
+        width: 40%; /* Define a largura da imagem */
+        height: auto;
+    }
+
+    .project-content {
+        width: 60%; /* Define a largura do conteúdo de texto */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
 }
