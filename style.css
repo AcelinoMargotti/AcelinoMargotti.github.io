@@ -62,30 +62,63 @@ body {
     color: var(--primary-color);
 }
 
+/* --- ESTILOS DO VÍDEO DE FUNDO --- */
 .hero {
-    background: var(--card-background);
-    height: 60vh;
+    height: 80vh; /* Altura da seção com o vídeo */
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    position: relative; /* Essencial para posicionar o vídeo */
+    overflow: hidden; /* Garante que o vídeo não ultrapasse a seção */
+    color: #fff; /* Cor do texto sobre o vídeo */
 }
+
+#background-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    transform: translateX(-50%) translateY(-50%);
+    object-fit: cover;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Sobreposição escura para legibilidade */
+    z-index: 0;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1; /* Garante que o conteúdo fique sobre a sobreposição */
+}
+/* --- FIM DOS ESTILOS DO VÍDEO --- */
+
 
 .hero-content h1 {
     font-size: 3.5rem;
     margin-bottom: 0.5rem;
-    color: var(--text-color);
+    color: #fff; /* Corrigido para branco para ser legível sobre o vídeo */
 }
 
 .hero-content p {
     font-size: 1.2rem;
-    color: #666;
+    color: #f4f4f4; /* Corrigido para cinza claro para ser legível */
 }
 
 .hero-content .subtitle {
     font-size: 1.2rem;
     margin-bottom: 2rem;
-    color: #666;
+    color: #f4f4f4; /* Corrigido para cinza claro para ser legível */
 }
 
 .btn {
@@ -148,14 +181,13 @@ body {
     margin-bottom: 1rem;
 }
 
-/* Estilos do Card de Projeto Atualizados */
 .project-card {
     background: var(--card-background);
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     margin-bottom: 2rem;
-    overflow: hidden; /* Garante que a imagem não saia do card arredondado */
+    overflow: hidden;
     display: flex;
     flex-direction: column;
 }
@@ -165,7 +197,6 @@ body {
     box-shadow: 0 10px 20px rgba(0,0,0,0.12);
 }
 
-/* Novos estilos para a imagem do projeto */
 .project-image {
     width: 100%;
     height: auto;
@@ -208,19 +239,18 @@ body {
     color: #f4f4f4;
 }
 
-/* Media Query para telas maiores */
 @media (min-width: 768px) {
     .project-card {
-        flex-direction: row; /* Coloca a imagem e o texto lado a lado */
+        flex-direction: row;
     }
 
     .project-image {
-        width: 40%; /* Define a largura da imagem */
+        width: 40%;
         height: auto;
     }
 
     .project-content {
-        width: 60%; /* Define a largura do conteúdo de texto */
+        width: 60%;
         display: flex;
         flex-direction: column;
         justify-content: center;
