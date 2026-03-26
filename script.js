@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Animação de entrada das seções
     const sections = document.querySelectorAll('.section');
-
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -19,13 +19,32 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(section);
     });
 
-    // para escrolar suavemente pleos links de navegação
-    document.querySelectorAll('.nav-links a').forEach(anchor => {
+    // Rolagem suave para os links de navegação
+    document.querySelectorAll('.nav-links a, .mobile-nav-links a').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
+            
+            // Fecha o menu móvel (se estiver aberto) ao clicar em um link
+            if (mobileNav.classList.contains('open')) {
+                mobileNav.classList.remove('open');
+            }
+
             document.querySelector(this.getAttribute('href')).scrollIntoView({
                 behavior: 'smooth'
             });
         });
+    });
+
+    // Lógica do Menu Responsivo
+    const menuIcon = document.querySelector('.menu-icon');
+    const closeIcon = document.querySelector('.close-icon');
+    const mobileNav = document.querySelector('.mobile-nav-overlay');
+
+    menuIcon.addEventListener('click', () => {
+        mobileNav.classList.add('open');
+    });
+
+    closeIcon.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
     });
 });
