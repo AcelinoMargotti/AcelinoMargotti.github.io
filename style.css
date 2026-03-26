@@ -28,14 +28,18 @@ body {
     padding: 0 2rem;
 }
 
+/* --- EFEITO GLASSMORPHISM NA NAVBAR --- */
 .navbar {
-    background: var(--card-background);
+    background: rgba(255, 255, 255, 0.2); /* Fundo semitransparente */
+    backdrop-filter: blur(10px); /* O efeito de desfoque "fosco" */
+    -webkit-backdrop-filter: blur(10px); /* Suporte para Safari */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Borda sutil */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1); /* Sombra suave */
     padding: 1rem;
     position: sticky;
     top: 0;
     width: 100%;
     z-index: 10;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .navbar .container {
@@ -62,16 +66,15 @@ body {
     color: var(--primary-color);
 }
 
-/* --- ESTILOS DO VÍDEO DE FUNDO --- */
 .hero {
-    height: 80vh; /* Altura da seção com o vídeo */
+    height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    position: relative; /* Essencial para posicionar o vídeo */
-    overflow: hidden; /* Garante que o vídeo não ultrapasse a seção */
-    color: #fff; /* Cor do texto sobre o vídeo */
+    position: relative;
+    overflow: hidden;
+    color: #fff;
 }
 
 #background-video {
@@ -93,32 +96,31 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Sobreposição escura para legibilidade */
+    background-color: rgba(0, 0, 0, 0.4);
     z-index: 0;
 }
 
 .hero-content {
     position: relative;
-    z-index: 1; /* Garante que o conteúdo fique sobre a sobreposição */
+    z-index: 1;
 }
-/* --- FIM DOS ESTILOS DO VÍDEO --- */
-
 
 .hero-content h1 {
     font-size: 3.5rem;
     margin-bottom: 0.5rem;
-    color: #fff; /* Corrigido para branco para ser legível sobre o vídeo */
+    color: #fff;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
 }
 
 .hero-content p {
     font-size: 1.2rem;
-    color: #f4f4f4; /* Corrigido para cinza claro para ser legível */
+    color: #f4f4f4;
 }
 
 .hero-content .subtitle {
     font-size: 1.2rem;
     margin-bottom: 2rem;
-    color: #f4f4f4; /* Corrigido para cinza claro para ser legível */
+    color: #f4f4f4;
 }
 
 .btn {
@@ -161,18 +163,25 @@ body {
     gap: 2rem;
 }
 
-.skill-card {
-    background: var(--card-background);
-    padding: 2rem;
-    text-align: center;
+/* --- EFEITO GLASSMORPHISM NOS CARDS --- */
+.skill-card, .project-card {
+    background: rgba(255, 255, 255, 0.6); /* Fundo mais opaco para legibilidade */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    padding: 2rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.skill-card:hover {
+.skill-card {
+    text-align: center;
+}
+
+.skill-card:hover, .project-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.15);
 }
 
 .skill-icon {
@@ -182,19 +191,11 @@ body {
 }
 
 .project-card {
-    background: var(--card-background);
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
     margin-bottom: 2rem;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-}
-
-.project-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+    padding: 0; /* Removendo padding para a imagem colar nas bordas */
 }
 
 .project-image {
@@ -239,7 +240,108 @@ body {
     color: #f4f4f4;
 }
 
-@media (min-width: 768px) {
+/* --- EFEITO GLASSMORPHISM NO MENU RESPONSIVO --- */
+.menu-icon {
+    display: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.mobile-nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Fundo escuro semitransparente */
+    backdrop-filter: blur(10px); /* Efeito de vidro no menu aberto */
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.mobile-nav-overlay.open {
+    transform: translateX(0);
+}
+
+.close-icon {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    font-size: 2.5rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+.mobile-nav-links {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+.mobile-nav-links li {
+    margin: 2rem 0;
+}
+
+.mobile-nav-links li a {
+    color: #fff;
+    font-size: 1.8rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.mobile-nav-links li a:hover {
+    color: var(--primary-color);
+}
+
+/* --- MEDIA QUERIES --- */
+@media (max-width: 768px) {
+    .navbar .container {
+        justify-content: flex-end;
+    }
+
+    .desktop-nav {
+        display: none;
+    }
+
+    .menu-icon {
+        display: block;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .section {
+        padding: 3rem 0;
+    }
+    
+    .project-card {
+        flex-direction: column;
+    }
+
+    .project-image,
+    .project-content {
+        width: 100%;
+    }
+    
+    /* --- AJUSTE DO VÍDEO PARA CELULAR --- */
+    #background-video {
+        width: auto; /* Deixa a largura automática */
+        height: 100%; /* Força a altura a preencher o container */
+    }
+}
+
+@media (min-width: 769px) {
     .project-card {
         flex-direction: row;
     }
